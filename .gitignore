@@ -1,0 +1,12 @@
+# Unity generated files
+Library/
+Temp/
+Obj/
+Build/
+BuildPlayer/
+.vs/
+# User-specific files
+.idea/
+.vscode/
+# Windows image file caches
+Thumbs.db

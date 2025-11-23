@@ -14,6 +14,8 @@ public class Cooldown_Example : MonoBehaviour
       sr = GetComponent<SpriteRenderer>();
    }
 
+   
+   
    private void Update()
    {
       ChanceColorIfNeeded();

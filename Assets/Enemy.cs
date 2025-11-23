@@ -1,9 +1,44 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+   private SpriteRenderer sr;
+
+   [SerializeField] private float redColorDuration = 1;
+
+   public float currentTimeInGame;
+   public float lastTimeWasDamaged;
+   private void Awake()
+   {
+      sr = GetComponent<SpriteRenderer>();
+   }
+
+   private void Update()
+   {
+      ChanceColorIfNeeded();
+   }
+
+   private void ChanceColorIfNeeded()
+   {
+      currentTimeInGame = Time.time;
+
+      if (currentTimeInGame > lastTimeWasDamaged + redColorDuration)
+      {
+         if(sr.color != Color.white)
+            sr.color = Color.white;
+      }
+   }
+
    public void TakeDamage()
    {
-      Debug.Log(gameObject.name + "took some damage!");
+      sr.color = Color.red;
+      lastTimeWasDamaged = Time.time;
+
+   }
+
+   private void TurnWhite()
+   {
+      sr.color = Color.white;
    }
 }

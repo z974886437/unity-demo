@@ -22,6 +22,9 @@ public class Cooldown_Example : MonoBehaviour
    
    
    
+   
+   
+   
    private void Update()
    {
       ChanceColorIfNeeded();

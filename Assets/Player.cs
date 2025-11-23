@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,6 +8,13 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
+    //public Collider2D[] enemyColliders;//数组的大小是固定的，不能随时添加或移除项目
+    //public List<Collider2D> exampleList;//列表的大小是动态的，可以随时添加或移除项目
+    [Header("Attack details")]
+    [SerializeField] private float attackRadius;//攻击半径
+    [SerializeField] private Transform attackPoint;//攻击点
+    [SerializeField] private LayerMask whatIsEnemy;//什么是敌人
+    
     [Header("Movement details")]
     [SerializeField] private float moveSpeed = 3.5f;
     [SerializeField] private float jumpForce = 8;
@@ -35,6 +43,16 @@ public class Player : MonoBehaviour
         HandleMovement();
         HandleAnimations();
         HandleFlip();
+    }
+
+    public void DamageEnemies()
+    {
+        Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsEnemy);
+
+        foreach (Collider2D enemy in enemyColliders)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage();
+        }
     }
 
     public void EnableMovementAndJump(bool enable)
@@ -107,5 +125,6 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position,transform.position + new Vector3(0,-groundCheckDistance));// 绘制一条从物体位置到物体位置下方某一距离的线
+        Gizmos.DrawWireSphere(attackPoint.position,attackRadius);
     }
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\PlayerAnimationEvents.cs" />
     <Reference Include="UnityEngine">
       <HintPath>F:\unitY\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
